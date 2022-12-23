@@ -1,0 +1,34 @@
+(** @canonical Raytracer.Colors *)
+module Colors = Raytracer__Colors
+
+
+(** @canonical Raytracer.Display *)
+module Display = Raytracer__Display
+
+
+(** @canonical Raytracer.Features *)
+module Features = Raytracer__Features
+
+
+(** @canonical Raytracer.Matrix *)
+module Matrix = Raytracer__Matrix
+
+
+(** @canonical Raytracer.Objects *)
+module Objects = Raytracer__Objects
+
+
+(** @canonical Raytracer.Physics *)
+module Physics = Raytracer__Physics
+
+
+(** @canonical Raytracer.Rays *)
+module Rays = Raytracer__Rays
+
+
+(** @canonical Raytracer.Transformations *)
+module Transformations = Raytracer__Transformations
+
+
+(** @canonical Raytracer.Util *)
+module Util = Raytracer__Util

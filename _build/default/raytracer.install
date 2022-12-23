@@ -1,0 +1,8 @@
+lib: [
+  "_build/install/default/lib/raytracer/META"
+  "_build/install/default/lib/raytracer/dune-package"
+  "_build/install/default/lib/raytracer/opam"
+]
+bin: [
+  "_build/install/default/bin/raytracer"
+]
