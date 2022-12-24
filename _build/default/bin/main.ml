@@ -1,12 +1,10 @@
 open Raytracer.Display
-(* open Raytracer.Physics *)
 open Raytracer.Features
 open Raytracer.Util
 open Raytracer.Objects
-open Raytracer.Matrix
 open Raytracer.Rays
-open Raytracer.Transformations
-open Raytracer.Colors
+open Raytracer.Materials
+open Raytracer.Lights
 
 (* let _ = 
   let start = make_point 0. 1. 0. in 
@@ -38,8 +36,11 @@ let _ =
   let pixel_size = wall_size /. canvas_pixels in 
   let half = wall_size /. 2. in 
   let disp = initialize_display (int_of_float canvas_pixels) (int_of_float canvas_pixels) in 
-  let red : color = (1., 0., 0.) in 
-  let sphere = make_sphere (Some (combine [rotate_z (Float.pi /. 4.); scale 0.5 1. 1.])) in 
+  let mt = make_material (1., 0.2, 1.) 0.1 0.9 0.9 200. in
+  let sphere = make_sphere None (Some mt) in 
+  let lpos = make_point (-10.) 10. (-10.) in 
+  let lcol = (1.,1.,1.) in 
+  let l = make_light lpos lcol in 
   let ys = List.map float_of_int (range 0 (int_of_float canvas_pixels)) in
   let xs = List.map float_of_int (range 0 (int_of_float canvas_pixels)) in 
   let () = List.iter 
@@ -48,12 +49,19 @@ let _ =
     List.iter 
     (fun x ->
       let world_x = -.half +. pixel_size *. x in 
-      let position = make_point world_x world_y wall_z in 
-      let r = make_ray ray_origin (sub position ray_origin) in 
+      let pstn = make_point world_x world_y wall_z in 
+      let r = make_ray ray_origin (norm (sub pstn ray_origin)) in 
       let is = intersect r sphere in 
       match hit is with 
       | None -> ()
-      | Some _ -> set_pixel disp (int_of_float y) (int_of_float x) red) 
+      | Some i -> 
+        let p = position r i.t in 
+        let nv = normal_at i.o p in 
+        let _, ray_direction = r in 
+        let eyev = mult ray_direction (-1.) in 
+        let _, _, mt = i.o in 
+        let hit_color = lighting mt l p eyev nv in
+        set_pixel disp (int_of_float y) (int_of_float x) hit_color) 
       xs) 
       ys
-  in canvas_to_ppm disp "test3.ppm"
+  in canvas_to_ppm disp "test4.ppm"

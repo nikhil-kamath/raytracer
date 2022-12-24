@@ -10,6 +10,14 @@ module Display = Raytracer__Display
 module Features = Raytracer__Features
 
 
+(** @canonical Raytracer.Lights *)
+module Lights = Raytracer__Lights
+
+
+(** @canonical Raytracer.Materials *)
+module Materials = Raytracer__Materials
+
+
 (** @canonical Raytracer.Matrix *)
 module Matrix = Raytracer__Matrix
 

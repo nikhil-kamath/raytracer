@@ -84,3 +84,7 @@ let transform_point (a: point) (m: matrix) : point =
   let a = matrix_of_point a in 
   let a = mult_m m a in 
   point_of_matrix a
+
+let reflect (a: point) (n: point) : point = 
+  if is_point a || is_point n then failwith "trying to reflect points instead of vectors" else
+  sub a (mult n (2. *. (dot a n)))
