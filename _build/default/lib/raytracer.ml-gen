@@ -40,3 +40,7 @@ module Transformations = Raytracer__Transformations
 
 (** @canonical Raytracer.Util *)
 module Util = Raytracer__Util
+
+
+(** @canonical Raytracer.World *)
+module World = Raytracer__World

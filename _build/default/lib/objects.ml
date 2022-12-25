@@ -7,10 +7,8 @@ type shape = Sphere
 type thing = shape * matrix * material
 type intersection = {t: float; o: thing}
 
-let make_sphere (m: matrix option) (mt: material option): thing = 
-  let m = match m with Some(m) -> m | None -> identity_of 4 in 
-  let mt = match mt with Some(mt) -> mt | None -> default_material in 
-  (Sphere, m, mt)
+let make_sphere ?(transformation = identity_of 4) ?(material = make_material ()) (): thing = 
+  (Sphere, transformation, material)
 
 let intersect (r: ray) (tng: thing) : intersection list = 
   let obj, m, _ = tng in 

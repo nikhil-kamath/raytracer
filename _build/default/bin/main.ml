@@ -5,6 +5,8 @@ open Raytracer.Objects
 open Raytracer.Rays
 open Raytracer.Materials
 open Raytracer.Lights
+(* open Raytracer.Transformations
+open Raytracer.Matrix *)
 
 (* let _ = 
   let start = make_point 0. 1. 0. in 
@@ -32,12 +34,14 @@ let _ =
   let ray_origin = make_point 0. 0. (-5.) in 
   let wall_z = 10. in 
   let wall_size = 7. in 
-  let canvas_pixels = 100. in 
+  let canvas_pixels = 500. in 
   let pixel_size = wall_size /. canvas_pixels in 
   let half = wall_size /. 2. in 
   let disp = initialize_display (int_of_float canvas_pixels) (int_of_float canvas_pixels) in 
-  let mt = make_material (1., 0.2, 1.) 0.1 0.9 0.9 200. in
-  let sphere = make_sphere None (Some mt) in 
+  let mt = make_material (0.2, 0.2, 1.) 0.2 0.9 0.9 100. in
+  let sphere = make_sphere 
+    None 
+    (Some mt) in 
   let lpos = make_point (-10.) 10. (-10.) in 
   let lcol = (1.,1.,1.) in 
   let l = make_light lpos lcol in 
@@ -63,5 +67,5 @@ let _ =
         let hit_color = lighting mt l p eyev nv in
         set_pixel disp (int_of_float y) (int_of_float x) hit_color) 
       xs) 
-      ys
+    ys
   in canvas_to_ppm disp "test4.ppm"

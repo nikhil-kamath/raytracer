@@ -8,12 +8,11 @@ type material = {
   shininess: float;
 }
 
-let make_material (c: color) a d s sh = 
-  {clr = c;
-  ambient = a;
-  diffuse = d;
-  specular = s;
-  shininess = sh}
-
-let default_material = 
-  make_material (1., 1., 1.) 0.1 0.9 0.9 200.
+let make_material ?(color:color=(1., 1., 1.)) ?(ambient=0.1) ?(diffuse=0.9) ?(specular=0.9) ?(shininess=200.) (): material = 
+  {
+    clr=color;
+    ambient=ambient;
+    diffuse=diffuse;
+    specular=specular;
+    shininess=shininess
+  }
