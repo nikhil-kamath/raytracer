@@ -21,3 +21,7 @@ let mult_c (first: color) (second: color) : color =
   let r, g, b = first in 
   let r2, g2, b2 = second in 
   (r*.r2, g*.g2, b*.b2)
+
+let rgb_to_color rgb = 
+  let r, g, b = rgb in 
+  (float_of_int r) /. 255., (float_of_int g) /. 255., (float_of_int b) /. 255.

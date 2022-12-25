@@ -14,11 +14,11 @@ let height (c: canvas) =
 let width (c: canvas) = 
   Array.length c.(0)
 
-let set_pixel (c: canvas) (row: int) (col: int) (new_color: color) : unit = 
-  if row >= height c || col >= width c then 
-    failwith ("cannot add point (" ^ string_of_int row ^ ", " ^ string_of_int col ^ ")") 
+let set_pixel (c: canvas) (x: int) (y: int) (new_color: color) : unit = 
+  if x >= width c || y >= height c then 
+    failwith ("cannot add point (" ^ string_of_int x ^ ", " ^ string_of_int y ^ ")") 
   else
-    c.(row).(col) <- new_color
+    c.(y).(x) <- new_color
 
 let clamp n a b : int = 
   if n < a then a else

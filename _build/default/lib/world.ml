@@ -29,9 +29,8 @@ let s1 = make_sphere ~material:(make_material ~color:(0.8, 1., 0.6) ~diffuse:0.7
   {objects = [s1; s2]; lights=[l]}
 
 let intersect_world (w: world) (r: ray) : intersection list = 
-  let {objects=objs; _} = w in 
-  let is = List.concat (List.map (fun o -> intersect r o) objs) in 
-  List.sort (fun x y -> let {t=t1; _} = x in let {t=t2; _} = y in compare t1 t2) is
+  let is = List.concat (List.map (fun o -> intersect r o) w.objects) in 
+  List.sort (fun x y -> compare x.t y.t) is
 
 
 let prepare_computations (i: intersection) (r: ray) : computation = 

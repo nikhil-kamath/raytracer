@@ -1,12 +1,15 @@
 open Raytracer.Display
 open Raytracer.Features
-open Raytracer.Util
+(* open Raytracer.Util *)
 open Raytracer.Objects
-open Raytracer.Rays
+(* open Raytracer.Rays *)
 open Raytracer.Materials
 open Raytracer.Lights
-(* open Raytracer.Transformations
-open Raytracer.Matrix *)
+open Raytracer.Transformations
+open Raytracer.Matrix
+open Raytracer.Camera
+open Raytracer.World
+open Raytracer.Colors
 
 (* let _ = 
   let start = make_point 0. 1. 0. in 
@@ -29,7 +32,7 @@ open Raytracer.Matrix *)
     let x, y, _, _ = p in set_pixel disp (int_of_float y) (int_of_float x) (1., 0., 0.)) 
     points;
   canvas_to_ppm disp "test2.ppm" *)
-
+(* 
 let _ = 
   let ray_origin = make_point 0. 0. (-5.) in 
   let wall_z = 10. in 
@@ -65,4 +68,55 @@ let _ =
         set_pixel disp (int_of_float y) (int_of_float x) hit_color) 
       xs) 
     ys
-  in canvas_to_ppm disp "test4.ppm"
+  in canvas_to_ppm disp "test4.ppm" *)
+
+let _ = 
+  let floor = make_sphere 
+    ~transformation:(scale 10. 0.01 10.) 
+    ~material:(make_material ~color:(rgb_to_color (70, 30, 34)) ~specular:0. ()) () in 
+    let left_wall = make_sphere 
+    ~transformation:(combine [
+      translate 0. 0. 5.;
+      rotate_y (-.Float.pi /. 4.);
+      rotate_x (Float.pi /. 2.);
+      scale 10. 0.01 10.]) 
+    ~material:(make_material ~color:(rgb_to_color (244, 192, 149)) ~specular:0. ()) () in 
+  let right_wall = make_sphere 
+    ~transformation:(combine [
+      translate 0. 0. 5.;
+      rotate_y (Float.pi /. 4.);
+      rotate_x (Float.pi /. 2.);
+      scale 10. 0.01 10.]) 
+    ~material:left_wall.material () in 
+  let middle = make_sphere 
+    ~transformation:(translate (-0.5) 1. 0.5)
+    ~material:(make_material
+      ~color:(rgb_to_color (29, 120, 116))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let right = make_sphere 
+    ~transformation:(combine [
+      translate (1.5) 0.5 (-0.5);
+      scale 0.5 0.5 0.5])
+    ~material:(make_material
+      ~color:(rgb_to_color (254, 254, 227))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let left = make_sphere 
+    ~transformation:(combine [
+      translate (-1.5) 0.33 (-0.75);
+      scale 0.33 0.33 0.33])
+    ~material:(make_material
+      ~color:(rgb_to_color (103, 146, 137))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let light = make_light (make_point (-10.) 10. (-10.)) (1., 1., 1.) in 
+  let camera = make_camera 400 200 (Float.pi /. 3.) 
+    ~transformation:(view 
+      (make_point 0. 1.5 (-5.))
+      (make_point 0. 1. 0.)
+      (make_vector 0. 1. 0.)) () in 
+  let world = {objects=[left_wall;floor;right_wall;left;middle;right]; lights=[light]} in 
+  let output = render camera world in 
+  canvas_to_ppm output "test5.ppm"
+

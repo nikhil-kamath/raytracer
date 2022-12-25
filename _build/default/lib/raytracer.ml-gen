@@ -1,3 +1,7 @@
+(** @canonical Raytracer.Camera *)
+module Camera = Raytracer__Camera
+
+
 (** @canonical Raytracer.Colors *)
 module Colors = Raytracer__Colors
 
