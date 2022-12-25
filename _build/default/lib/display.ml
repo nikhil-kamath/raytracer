@@ -42,7 +42,8 @@ let print_row (row : color array) (file : out_channel) : unit =
     row
 
 let print_rows (c : canvas) (file : out_channel) : unit = 
-  Array.iter (fun row -> print_row row file) c
+  Array.iter (fun row -> print_row row file;
+  Printf.fprintf file "\n") c
 
 let canvas_to_ppm (c: canvas) (filename: string) : unit = 
   let oc = open_out filename in 
