@@ -1,9 +1,9 @@
-# dune build
+# dune utop
 # OCAMLPARAM: unset
 # Shared cache: disabled
 # Workspace root: /Users/nikhil/Code/raytracer
 # Auto-detected concurrency: 8
-$ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g7253xcykqjv0hc0000gn/T/dune_db0567_output
+$ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g7253xcykqjv0hc0000gn/T/dune_89054d_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -106,10 +106,5 @@ $ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamldep.opt -modules -impl lib/world.ml) > _build/default/lib/.raytracer.objs/world.ml.d
-> File "lib/world.ml", line 17, characters 69-69:
-> Error: Syntax error
-[2]
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamldep.opt -modules -impl lib/objects.ml) > _build/default/lib/.raytracer.objs/objects.ml.d
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.raytracer.objs/byte -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/byte/raytracer__Objects.cmo -c -impl lib/objects.ml)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.raytracer.objs/byte -I lib/.raytracer.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/native/raytracer__Objects.cmx -c -impl lib/objects.ml)
+$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -bin-annot -I .utop/.utop.eobjs/byte -I /Users/nikhil/.opam/4.12.0/lib/findlib -I /Users/nikhil/.opam/4.12.0/lib/lambda-term -I /Users/nikhil/.opam/4.12.0/lib/logs -I /Users/nikhil/.opam/4.12.0/lib/lwt -I /Users/nikhil/.opam/4.12.0/lib/lwt/unix -I /Users/nikhil/.opam/4.12.0/lib/lwt_react -I /Users/nikhil/.opam/4.12.0/lib/mew -I /Users/nikhil/.opam/4.12.0/lib/mew_vi -I /Users/nikhil/.opam/4.12.0/lib/ocaml/compiler-libs -I /Users/nikhil/.opam/4.12.0/lib/ocaml/threads -I /Users/nikhil/.opam/4.12.0/lib/ocplib-endian -I /Users/nikhil/.opam/4.12.0/lib/ocplib-endian/bigstring -I /Users/nikhil/.opam/4.12.0/lib/react -I /Users/nikhil/.opam/4.12.0/lib/result -I /Users/nikhil/.opam/4.12.0/lib/trie -I /Users/nikhil/.opam/4.12.0/lib/uchar -I /Users/nikhil/.opam/4.12.0/lib/utop -I /Users/nikhil/.opam/4.12.0/lib/uucp -I /Users/nikhil/.opam/4.12.0/lib/uuseg -I /Users/nikhil/.opam/4.12.0/lib/uutf -I /Users/nikhil/.opam/4.12.0/lib/zed -I lib/.raytracer.objs/byte -no-alias-deps -o .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -c -impl .utop/utop.ml-gen)
+$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o .utop/utop.exe -output-complete-exe /Users/nikhil/.opam/4.12.0/lib/ocaml/compiler-libs/ocamlcommon.cma /Users/nikhil/.opam/4.12.0/lib/ocaml/compiler-libs/ocamlbytecomp.cma /Users/nikhil/.opam/4.12.0/lib/ocaml/compiler-libs/ocamltoplevel.cma /Users/nikhil/.opam/4.12.0/lib/findlib/findlib.cma /Users/nikhil/.opam/4.12.0/lib/findlib/findlib_top.cma /Users/nikhil/.opam/4.12.0/lib/logs/logs.cma -I /Users/nikhil/.opam/4.12.0/lib/ocaml /Users/nikhil/.opam/4.12.0/lib/lwt/lwt.cma /Users/nikhil/.opam/4.12.0/lib/logs/logs_lwt.cma /Users/nikhil/.opam/4.12.0/lib/ocaml/unix.cma -I /Users/nikhil/.opam/4.12.0/lib/ocaml /Users/nikhil/.opam/4.12.0/lib/ocaml/bigarray.cma -I /Users/nikhil/.opam/4.12.0/lib/ocaml /Users/nikhil/.opam/4.12.0/lib/ocplib-endian/ocplib_endian.cma /Users/nikhil/.opam/4.12.0/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /Users/nikhil/.opam/4.12.0/lib/ocaml/threads/threads.cma -I /Users/nikhil/.opam/4.12.0/lib/ocaml /Users/nikhil/.opam/4.12.0/lib/lwt/unix/lwt_unix.cma -I /Users/nikhil/.opam/4.12.0/lib/lwt/unix /Users/nikhil/.opam/4.12.0/lib/react/react.cma /Users/nikhil/.opam/4.12.0/lib/lwt_react/lwt_react.cma /Users/nikhil/.opam/4.12.0/lib/result/result.cma /Users/nikhil/.opam/4.12.0/lib/uutf/uutf.cma /Users/nikhil/.opam/4.12.0/lib/uucp/uucp.cma /Users/nikhil/.opam/4.12.0/lib/uuseg/uuseg.cma /Users/nikhil/.opam/4.12.0/lib/zed/zed.cma /Users/nikhil/.opam/4.12.0/lib/trie/trie.cma /Users/nikhil/.opam/4.12.0/lib/mew/mew.cma /Users/nikhil/.opam/4.12.0/lib/mew_vi/mew_vi.cma /Users/nikhil/.opam/4.12.0/lib/lambda-term/lambda_term.cma -I /Users/nikhil/.opam/4.12.0/lib/lambda-term /Users/nikhil/.opam/4.12.0/lib/utop/uTop.cma lib/raytracer.cma .utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)

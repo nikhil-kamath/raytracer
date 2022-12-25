@@ -4,17 +4,23 @@ open Matrix
 open Materials
 
 type shape = Sphere
-type thing = shape * matrix * material
-type intersection = {t: float; o: thing}
+type thing = { 
+  shape: shape;
+  transformation: matrix;
+  material: material;
+  }
+type intersection = {
+  t: float;
+  o: thing
+  }
 
 let make_sphere ?(transformation = identity_of 4) ?(material = make_material ()) (): thing = 
-  (Sphere, transformation, material)
+  {shape=Sphere; transformation=transformation; material=material}
 
 let intersect (r: ray) (tng: thing) : intersection list = 
-  let obj, m, _ = tng in 
-  let r = transform_ray r (inverse m) in 
+  let r = transform_ray r (inverse tng.transformation) in 
   let org, dir = r in 
-  match obj with 
+  match tng.shape with 
   | Sphere ->
     let sphere_to_ray = sub org (make_point 0. 0. 0.) in 
     let a = dot dir dir in 
@@ -39,12 +45,11 @@ let rec hit (is: intersection list) : intersection option =
       else Some(i)
   
 let normal_at (tng: thing) (p: point) : point = 
-  let shp, m, _ = tng in 
-  match shp with 
+  match tng.shape with 
   | Sphere -> 
-    let obj_point = transform_point p (inverse m) in 
+    let obj_point = transform_point p (inverse tng.transformation) in 
     let obj_normal = sub obj_point (make_point 0. 0. 0.) in 
-    let wrld_normal = transform_point obj_normal (transpose (inverse m)) in 
+    let wrld_normal = transform_point obj_normal (transpose (inverse tng.transformation)) in 
     let a, b, c, _ = wrld_normal in let wrld_normal = make_vector a b c in 
     norm wrld_normal
 

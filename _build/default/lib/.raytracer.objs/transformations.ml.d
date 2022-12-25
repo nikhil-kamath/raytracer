@@ -1,1 +1,1 @@
-lib/transformations.ml: Matrix
+lib/transformations.ml: Features Matrix

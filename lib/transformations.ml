@@ -1,4 +1,5 @@
 open Matrix
+open Features
 
 
 let translate x y z = 
@@ -42,3 +43,19 @@ let shear xy xz yx yz zx zy =
     [yx; 1.; yz; 0.];
     [zx; zy; 1.; 0.];
     [0.; 0.; 0.; 1.]]
+
+let view (f: point) (t: point) (up: point) : matrix = 
+  let forward = norm (sub t f) in 
+  let left = cross forward (norm up) in 
+  let true_up = cross left forward in 
+  let lx, ly, lz, _ = left in 
+  let tux, tuy, tuz, _ = true_up in 
+  let fx, fy, fz, _ = forward in 
+  let fromx, fromy, fromz, _ = f in 
+  mult_m (matrix_of [
+    [lx; ly; lz; 0.];
+    [tux; tuy; tuz; 0.];
+    [-.fx; -.fy; -.fz; 0.];
+    [0.; 0.; 0.; 1.]
+  ])
+  (translate (-.fromx) (-.fromy) (-.fromz))
