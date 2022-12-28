@@ -70,7 +70,7 @@ let _ =
     ys
   in canvas_to_ppm disp "test4.ppm" *)
 
-let _ = 
+(* let _ = 
   let floor = make_sphere 
     ~transformation:(scale 10. 0.01 10.) 
     ~material:(make_material ~color:(rgb_to_color (70, 30, 34)) ~specular:0. ()) () in 
@@ -119,4 +119,41 @@ let _ =
   let world = {objects=[left_wall;floor;right_wall;left;middle;right]; lights=[light]} in 
   let output = render camera world in 
   canvas_to_ppm output "test5.ppm"
+
+   *)
+
+let _ = 
+  let floor = make_plane 
+    ~transformation:(rotate_z (Float.pi /. 12.)) () in 
+  let middle = make_sphere 
+    ~transformation:(translate (-0.5) 1. 0.5)
+    ~material:(make_material
+      ~color:(rgb_to_color (29, 120, 116))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let right = make_sphere 
+    ~transformation:(combine [
+      translate (1.5) 0.5 (-0.5);
+      scale 0.5 0.5 0.5])
+    ~material:(make_material
+      ~color:(rgb_to_color (254, 254, 227))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let left = make_sphere 
+    ~transformation:(combine [
+      translate (-1.5) 0.33 (-0.75);
+      scale 0.33 0.33 0.33])
+    ~material:(make_material
+      ~color:(rgb_to_color (103, 146, 137))
+      ~diffuse:0.7
+      ~specular:0.3 ()) () in 
+  let light = make_light (make_point (-10.) 2.5 (-10.)) (1., 1., 1.) in 
+  let camera = make_camera 400 200 (Float.pi /. 3.) 
+    ~transformation:(view 
+      (make_point 0. 1.5 (-5.))
+      (make_point 0. 1. 0.)
+      (make_vector 0. 1. 0.)) () in 
+  let world = {objects=[floor;left;middle;right]; lights=[light]} in 
+  let output = render camera world in 
+  canvas_to_ppm output "test6.ppm"
 

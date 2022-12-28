@@ -3,7 +3,7 @@
 # Shared cache: disabled
 # Workspace root: /Users/nikhil/Code/raytracer
 # Auto-detected concurrency: 8
-$ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g7253xcykqjv0hc0000gn/T/dune_edb762_output
+$ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g7253xcykqjv0hc0000gn/T/dune_b983f4_output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -106,12 +106,5 @@ $ /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -config > /var/folders/s5/508jsrcx5g
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamldep.opt -modules -impl lib/world.ml) > _build/default/lib/.raytracer.objs/world.ml.d
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.raytracer.objs/byte -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/byte/raytracer__World.cmo -c -impl lib/world.ml)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.raytracer.objs/byte -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/byte/raytracer__Camera.cmo -c -impl lib/camera.ml)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I bin/.main.eobjs/byte -I lib/.raytracer.objs/byte -no-alias-deps -opaque -o bin/.main.eobjs/byte/dune__exe__Main.cmi -c -intf bin/main.mli)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.raytracer.objs/byte -I lib/.raytracer.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/native/raytracer__Camera.cmx -c -impl lib/camera.ml)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.raytracer.objs/byte -I lib/.raytracer.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Raytracer -o lib/.raytracer.objs/native/raytracer__World.cmx -c -impl lib/world.ml)
 $ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I bin/.main.eobjs/byte -I bin/.main.eobjs/native -I lib/.raytracer.objs/byte -I lib/.raytracer.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.main.eobjs/native/dune__exe__Main.cmx -c -impl bin/main.ml)
-$ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/raytracer.cmxa lib/.raytracer.objs/native/raytracer.cmx lib/.raytracer.objs/native/raytracer__Matrix.cmx lib/.raytracer.objs/native/raytracer__Features.cmx lib/.raytracer.objs/native/raytracer__Colors.cmx lib/.raytracer.objs/native/raytracer__Materials.cmx lib/.raytracer.objs/native/raytracer__Lights.cmx lib/.raytracer.objs/native/raytracer__Rays.cmx lib/.raytracer.objs/native/raytracer__Objects.cmx lib/.raytracer.objs/native/raytracer__Transformations.cmx lib/.raytracer.objs/native/raytracer__World.cmx lib/.raytracer.objs/native/raytracer__Util.cmx lib/.raytracer.objs/native/raytracer__Display.cmx lib/.raytracer.objs/native/raytracer__Physics.cmx lib/.raytracer.objs/native/raytracer__Camera.cmx)
 $ (cd _build/default && /Users/nikhil/.opam/4.12.0/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/main.exe lib/raytracer.cmxa bin/.main.eobjs/native/dune__exe__Main.cmx)
