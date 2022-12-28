@@ -7,7 +7,7 @@ type light = {position: point; intensity: color}
 let make_light (pos: point) (i: color) : light = 
   {position=pos; intensity=i}
 
-let lighting (mt: material) (l: light) (p: point) (ev: point) (nv: point) : color =
+let lighting (mt: material) (l: light) (p: point) (ev: point) (nv: point) (in_shadow: bool): color =
   let ecolor = mult_c mt.clr l.intensity in 
   let lv = norm (sub l.position p) in 
   let amb = scale_c ecolor mt.ambient in 
@@ -22,4 +22,4 @@ let lighting (mt: material) (l: light) (p: point) (ev: point) (nv: point) : colo
         let f = Float.pow rdote mt.shininess in 
         scale_c ecolor (ldotn *. mt.diffuse), scale_c l.intensity (mt.specular *. f)
   in 
-  add_c amb (add_c dif spec)
+  if in_shadow then amb else add_c amb (add_c dif spec)
