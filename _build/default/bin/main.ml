@@ -10,6 +10,7 @@ open Raytracer.Matrix
 open Raytracer.Camera
 open Raytracer.World
 open Raytracer.Colors
+open Raytracer.Patterns
 
 (* let _ = 
   let start = make_point 0. 1. 0. in 
@@ -124,13 +125,49 @@ let _ =
 
 let _ = 
   let floor = make_plane 
-    ~transformation:(rotate_z (Float.pi /. 12.)) () in 
+    ~transformation:(rotate_z (Float.pi /. 12.)) 
+    ~material:(make_material
+      ~pattern:
+        (ring_pattern
+        (rgb_to_color (103, 146, 137))
+        (rgb_to_color (254, 254, 227)) ())
+        ())
+      () in 
+  let back = make_plane 
+    ~transformation:(combine [
+      rotate_z (Float.pi /. 12.);
+      translate 0. 0. (10.);
+      rotate_x (Float.pi /. 5.);
+      ])
+    ~material:(make_material
+      ~pattern:
+        {design=Checker(
+          (stripe_pattern
+            (rgb_to_color (10, 104, 113))
+            (rgb_to_color (8, 77, 114))
+            ~transformation:(combine [rotate_y (Float.pi /. 2.); scale 0.2 0.2 0.2])
+          () ),
+          (stripe_pattern
+            (rgb_to_color (104, 10, 113))
+            (rgb_to_color (77, 8, 114))
+            ~transformation:(scale 0.2 0.2 0.2)
+        ()));
+        transformation=(shear 0. 1. 0. 0. 0. 0.)}
+        ())
+      () in
   let middle = make_sphere 
     ~transformation:(translate (-0.5) 1. 0.5)
     ~material:(make_material
       ~color:(rgb_to_color (29, 120, 116))
       ~diffuse:0.7
-      ~specular:0.3 ()) () in 
+      ~specular:0.3 
+      ~pattern:
+        (stripe_pattern
+        (rgb_to_color (103, 146, 137))
+        (rgb_to_color (254, 254, 227))
+        ~transformation:(scale 0.25 0.25 0.25)
+        ())
+      ()) () in 
   let right = make_sphere 
     ~transformation:(combine [
       translate (1.5) 0.5 (-0.5);
@@ -153,7 +190,7 @@ let _ =
       (make_point 0. 1.5 (-5.))
       (make_point 0. 1. 0.)
       (make_vector 0. 1. 0.)) () in 
-  let world = {objects=[floor;left;middle;right]; lights=[light]} in 
+  let world = {objects=[floor;left;middle;right;back]; lights=[light]} in 
   let output = render camera world in 
-  canvas_to_ppm output "test6.ppm"
+  canvas_to_ppm output "test7.ppm"
 

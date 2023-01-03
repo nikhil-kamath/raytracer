@@ -2,6 +2,8 @@ open Rays
 open Features
 open Matrix
 open Materials
+open Patterns
+open Colors
 
 type shape = Sphere | Plane
 type thing = { 
@@ -69,4 +71,7 @@ let normal_at (tng: thing) (p: point) : point =
     let a, b, c, _ = wrld_normal in let wrld_normal = make_vector a b c in 
     norm wrld_normal
 
+let pattern_color (pt: pattern) (obj: thing) (p: point): color =
+  let p = transform_point p (inverse obj.transformation) in 
+  color_on_design pt p
 

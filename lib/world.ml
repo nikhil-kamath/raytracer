@@ -63,7 +63,7 @@ let is_shadowed (w: world) (p: point) : bool =
 
 let shade_hit (w: world) (c: computation) : color = 
   let l = match w.lights with [] -> failwith "no light found!" | h::_ -> h in 
-  lighting c.obj.material l c.over_point c.eyev c.normalv (is_shadowed w c.over_point)
+  lighting c.obj.material c.obj l c.over_point c.eyev c.normalv (is_shadowed w c.over_point)
 
 let color_at (w: world) (r: ray) = 
   let is = intersect_world w r in 

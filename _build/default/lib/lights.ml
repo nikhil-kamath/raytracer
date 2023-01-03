@@ -1,14 +1,16 @@
 open Colors
 open Features
 open Materials
+open Objects
 
 type light = {position: point; intensity: color}
 
 let make_light (pos: point) (i: color) : light = 
   {position=pos; intensity=i}
 
-let lighting (mt: material) (l: light) (p: point) (ev: point) (nv: point) (in_shadow: bool): color =
-  let ecolor = mult_c mt.clr l.intensity in 
+let lighting (mt: material) (obj: thing) (l: light) (p: point) (ev: point) (nv: point) (in_shadow: bool): color =
+  let surface_color = pattern_color mt.pattern obj p in 
+  let ecolor = mult_c surface_color l.intensity in 
   let lv = norm (sub l.position p) in 
   let amb = scale_c ecolor mt.ambient in 
   let ldotn = dot lv nv in 

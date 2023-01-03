@@ -1,1 +1,1 @@
-lib/lights.ml: Colors Features Float Materials
+lib/lights.ml: Colors Features Float Materials Objects

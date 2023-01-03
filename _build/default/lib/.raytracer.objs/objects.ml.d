@@ -1,1 +1,1 @@
-lib/objects.ml: Features Materials Matrix Rays
+lib/objects.ml: Colors Features Materials Matrix Patterns Rays
